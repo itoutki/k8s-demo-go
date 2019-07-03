@@ -1,4 +1,15 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/${PROJECT_ID}/k8s-demo-go:${BRANCH_NAME}-${SHORT_SHA}', '.']
+- name: 'gcr.io/$PROJECT_ID/helm'
+  entrypoint: /bin/sh
+  args:
+  - '-c'
+  - |
+    git clone https://github.com/itoutki/k8s-demo-env.git && \
+    cd k8s-demo-env && \
+    git checkout staging && \
+    git checkout -b ${BRANCH_NAME}-${SHORT_SHA} && \
+    git push origin ${BRANCH_NAME}-${SHORT_SHA}
+
 images: ['gcr.io/${PROJECT_ID}/k8s-demo-go:${BRANCH_NAME}-${SHORT_SHA}']
