@@ -49,7 +49,7 @@ steps:
     git checkout ${BRANCH_NAME} && \
     git merge ${BRANCH_NAME}-${SHORT_SHA} && \
     git push origin ${BRANCH_NAME}-${SHORT_SHA} && \
-    git push origin ${BRANCH_NAME} && \
+    git push origin ${BRANCH_NAME}
   volumes:
   - name: 'ssh'
     path: /root/.ssh
