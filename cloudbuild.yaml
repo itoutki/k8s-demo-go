@@ -40,7 +40,8 @@ steps:
     git config user.name "itoutki"
     git config user.email "itoutki@example.com"
     git checkout master && \
-    echo -e "image:\n  tag: ${BRANCH_NAME}-${SHORT_SHA}" > values/base.yaml && \
+    echo "image:" > values/base.yaml && \
+    echo "  tag: ${BRANCH_NAME}-${SHORT_SHA}" >> values/base.yaml && \
     git add values/base.yaml && \
     git commit  -m "update image tag ${BRANCH_NAME}-${SHORT_SHA}" && \
     git push origin master && \
