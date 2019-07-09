@@ -49,8 +49,8 @@ steps:
     git merge master && \
     git checkout -b ${BRANCH_NAME}-${SHORT_SHA} && \
     helm init --client-only && \
-    helm template ./chart -x templates/k8s-demo-go-rs.yaml -f values/${BRANCH_NAME}.yaml values/base.yaml > manifests/${BRANCH_NAME}/k8s-demo-go-rs.yaml && \
-    helm template ./chart -x templates/k8s-demo-go-svc.yaml -f values/${BRANCH_NAME}.yaml values/base.yaml > manifests/${BRANCH_NAME}/k8s-demo-go-svc.yaml && \
+    helm template ./chart -x templates/k8s-demo-go-rs.yaml -f values/${BRANCH_NAME}.yaml -f values/base.yaml > manifests/${BRANCH_NAME}/k8s-demo-go-rs.yaml && \
+    helm template ./chart -x templates/k8s-demo-go-svc.yaml -f values/${BRANCH_NAME}.yaml -f values/base.yaml > manifests/${BRANCH_NAME}/k8s-demo-go-svc.yaml && \
     git add manifests/${BRANCH_NAME}/ && \
     git commit -m "update manifests for ${BRANCH_NAME}-${SHORT_SHA}" && \
     git checkout ${BRANCH_NAME} && \
